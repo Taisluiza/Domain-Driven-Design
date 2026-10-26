@@ -7,7 +7,12 @@ authors = [
     { name = "TaisLuiza", email = "taissalissousa@gmail.com" }
 ]
 requires-python = ">=3.12"
-dependencies = []
+dependencies = [
+    "passlib[bcrypt]>=1.7.4",
+    "psycopg2-binary>=2.9.13",
+    "python-jose>=3.5.0",
+    "sqlalchemy>=2.1.6",
+]
 
 [project.scripts]
 domain-driven-design = "domain_driven_design:main"
