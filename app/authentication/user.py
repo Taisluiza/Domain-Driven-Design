@@ -1,4 +1,5 @@
 from sqlalchemy import Column, Integer, String
+from app.domain_exception import DomainException
 
 class User:
     # CRIANDO A TABELA, SEPARANDO POS schema PARA MANTER UM MONOLITO MODULAR
@@ -11,4 +12,22 @@ class User:
     email = Column(String(128), unique=True, index=True)
     hashed_password = Column(String(512))
 
-    
+    def __init__(self, name: str, email: str, password: str):    
+        
+        DomainException.validate(
+         name and len(name) <= 128, 
+         "Name must be at most 128 characters long."
+        )
+        self.name = name
+
+        DomainException.validate(
+            email and len(email) <= 128,
+            "Email must be a non-empty string with a maximum length of 128 characters.",
+        )
+        self.email = email
+
+        DomainException.validate(
+            password and len(password) >= 8,
+            "Password must be a non-empty string with a minimum length of 8 characters.",
+        )
+        self.hashed_password = password
