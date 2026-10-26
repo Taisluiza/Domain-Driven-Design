@@ -1,5 +1,7 @@
 from sqlalchemy import Column, Integer, String
 from app.domain_exception import DomainException
+from app.authentication._password import get_password_hash
+
 
 class User:
     # CRIANDO A TABELA, SEPARANDO POS schema PARA MANTER UM MONOLITO MODULAR
@@ -30,4 +32,5 @@ class User:
             password and len(password) >= 8,
             "Password must be a non-empty string with a minimum length of 8 characters.",
         )
-        self.hashed_password = password
+        self.hashed_password = get_password_hash(password)
+        
