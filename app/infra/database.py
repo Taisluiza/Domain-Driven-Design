@@ -32,6 +32,15 @@ def get_session_local() -> sessionmaker:
     return _session_local
 
 
+def get_session_local() -> sessionmaker:
+    global _session_local
+    if _session_local is None:
+        _session_local = sessionmaker(
+            autocommit=False, autoflush=False, bind=get_engine()
+        )
+    return _session_local
+
+
 def get_db():
     SessionLocal = get_session_local()
     db = SessionLocal()
@@ -46,6 +55,7 @@ def init_database():
     with engine.connect() as conn:
         conn.execute(text("CREATE SCHEMA IF NOT EXISTS authentication"))
         conn.execute(text("CREATE SCHEMA IF NOT EXISTS subscription"))
+        conn.execute(text("CREATE SCHEMA IF NOT EXISTS movement"))
         conn.commit()
 
 
@@ -53,6 +63,9 @@ def create_tables():
     engine = get_engine()
     from app.authentication._user import (
         User,  # noqa: F401 - Import required for SQLAlchemy model discovery
+    )
+    from app.movement.bank._bank_account import (
+        BankAccount,  # noqa: F401 - Import required for SQLAlchemy model discovery
     )
     from app.subscription.plan._plan import (
         Plan,  # noqa: F401 - Import required for SQLAlchemy model discovery
