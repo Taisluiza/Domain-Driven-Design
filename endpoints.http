@@ -27,3 +27,17 @@ username=teste3@teste.com.br&password=super123456
 ### Get user profile (protected endpoint)
 GET {{baseUrl}}/users/profile
 Authorization: Bearer {{token}}
+
+### Select a plan for the user (protected endpoint)
+POST {{baseUrl}}/subscriptions/select-plan
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "plan_id": 3,
+  "credit_card": "3436645345"
+}
+
+### GET user plans (protected endpoint)
+GET {{baseUrl}}/subscriptions/user
+Authorization: Bearer {{token}}
