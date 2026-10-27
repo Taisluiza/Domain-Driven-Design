@@ -26,5 +26,8 @@ def init_database():
         conn.commit()
 
 # Para criar a tabela.
-def crate_tables():
+def create_tables():
+    from app.authentication._user import (
+        User,  # noqa: F401 - Import required for SQLAlchemy model discovery
+    )
     Base.metadata.create_all(bind=engine)

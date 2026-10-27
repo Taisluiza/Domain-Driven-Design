@@ -1,7 +1,12 @@
 from fastapi import FastAPI
 from fastapi.responses import JSONResponse
-from app.authentication.route import user_router
 
+from app.authentication.route import user_router
+from app.infra.database import init_database, create_tables
+
+
+init_database()
+create_tables()
 
 app = FastAPI(
     title="Track Money",
