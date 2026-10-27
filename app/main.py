@@ -1,11 +1,17 @@
 from fastapi import FastAPI
 from fastapi.responses import JSONResponse
+from app.authentication.route import user_router
 
 
 app = FastAPI(
     title="Track Money",
     description="A simple application to track your finances.",
     version="0.1.0",
+)
+
+app.include_router(
+    user_router,
+    prefix="/users",
 )
 
 @app.get("/health")
