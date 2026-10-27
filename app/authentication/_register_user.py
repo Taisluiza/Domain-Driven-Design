@@ -3,7 +3,7 @@ from fastapi.responses import JSONResponse
 from pydantic import BaseModel
 
 from app.authentication._user import User
-from app.authentication.user_repository import UserRepository, get_user_repository
+from app.authentication._user_repository import UserRepository, get_user_repository
 
 
 class UserCreate(BaseModel):
