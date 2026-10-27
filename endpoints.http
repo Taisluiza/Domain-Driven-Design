@@ -4,19 +4,26 @@
 GET {{baseUrl}}/health
 
 ### User Registration Endpoint
-Send Request
-POST {{baseUrl}}/users/register
+POST {{baseUrl}}/users
+Content-Type: application/json
 
 {
-    "name": "teste teste",
-    "email": "teste@teste.com.br",
-    "password": "super123456"
+  "name": "teste teste",
+  "email": "teste3@teste.com.br",
+  "password": "super123456"
 }
 
 ### User Token Creation Endpoint
-POST {{baseUrl}}/user/token
+# @name login
+POST {{baseUrl}}/users/token 
 Content-Type: application/x-www-form-urlencoded
 
-username=teste3@teste.com.br&passaword=super123456
+username=teste3@teste.com.br&password=super123456
 
+###
 
+@token = {{login.response.body.access_token}}
+
+### Get user profile (protected endpoint)
+GET {{baseUrl}}/users/profile
+Authorization: Bearer {{token}}

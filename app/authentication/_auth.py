@@ -28,15 +28,17 @@ def generate_jwt_token(user: _User) -> str:
     )
     return token
 
-
+# Faz o decote do JWT, para recuperar o token no tempo da requisição
 def get_email_from_token(
     token: str = Depends(OAuth2PasswordBearer(tokenUrl="users/token")),
 ) -> str:
+    #testa se o token está correto
     try:
         payload = jwt.decode(
             token, os.getenv("SECRET_KEY"), algorithms=[os.getenv("ALGORITHM")]
         )
         email: str = payload.get("sub")
+        # Se não localizar o e-mail acoplado ao token
         if not email:
             raise HTTPException(
                 status_code=401, detail="Could not validate credentials"
