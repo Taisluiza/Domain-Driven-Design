@@ -3,3 +3,13 @@
 ### Health Check Endpoint
 GET {{baseUrl}}/health
 
+### User Registration Endpoint
+Send Request
+POST {{baseUrl}}/users/register
+
+{
+    "name": "John Doe",
+    "email": "teste@teste.com.br",
+    "password": "super123456"
+}
+

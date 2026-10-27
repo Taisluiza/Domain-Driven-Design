@@ -1,9 +1,13 @@
-from fastapi import FastAPI
+import logging
+from fastapi import FastAPI, Request
 from fastapi.responses import JSONResponse
 
 from app.authentication.route import user_router
 from app.infra.database import init_database, create_tables
+from app.domain_exception import DomainException
 
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
 
 init_database()
 create_tables()
@@ -18,6 +22,15 @@ app.include_router(
     user_router,
     prefix="/users",
 )
+
+@app.exception_handler(DomainException)
+async def domain_exception_handler(request: Request, exc: DomainException):
+    logger.warning(f"DomainException occurred: {exc.message}")
+    return JSONResponse(
+        status_code=400,
+        content={"detail": exc.message},
+    )
+
 
 @app.get("/health")
 async def health_check():
