@@ -51,7 +51,7 @@ def init_database():
 def create_tables():
     engine = get_engine()
     from app.authentication._user import (
-        _User,  # noqa: F401 - Import required for SQLAlchemy model discovery
+        User,  # noqa: F401 - Import required for SQLAlchemy model discovery
     )
 
     Base.metadata.create_all(bind=engine)

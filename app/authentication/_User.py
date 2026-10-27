@@ -4,7 +4,7 @@ from app.domain_exception import DomainException
 from app.authentication._password import get_password_hash
 from app.infra.database import Base
 
-class _User(Base):
+class User(Base):
     # CRIANDO A TABELA, SEPARANDO POS schema PARA MANTER UM MONOLITO MODULAR
     __tablename__ = 'users'
     __table_args__ = {'schema': "authentication"}

@@ -5,10 +5,10 @@ from fastapi import Depends, HTTPException
 from fastapi.security import OAuth2PasswordBearer
 from jose import jwt
 
-from app.authentication._user import _User
+from app.authentication._user import User
 
 
-def generate_jwt_token(user: _User) -> str:
+def generate_jwt_token(user: User) -> str:
     """Generate a JWT token for the user."""
     if not os.getenv("ACCESS_TOKEN_EXPIRE_MINUTES"): # Variavel de ambiente 
         raise ValueError("ACCESS_TOKEN_EXPIRE_MINUTES environment variable is not set.")
