@@ -1,8 +1,8 @@
 from fastapi import Depends
 from pydantic import BaseModel
 
-from app.authentication._auth import get_email_from_token
 from app.authentication._user_repository import UserRepository, get_user_repository
+from app.authentication.get_email_from_token import get_email_from_token
 
 
 class UserProfileResponse(BaseModel):
@@ -14,7 +14,6 @@ class UserProfileResponse(BaseModel):
 
 
 async def get_user_profile(
-    # Demostra que o e-mail é uma stringe mas depende de obter do token
     email: str = Depends(get_email_from_token),
     user_repository: UserRepository = Depends(get_user_repository),
 ) -> UserProfileResponse:
