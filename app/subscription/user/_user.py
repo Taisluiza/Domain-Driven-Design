@@ -48,3 +48,11 @@ class User(Base):
     def _deactive_plans(self):
         for user_plan in self.user_plans:
             user_plan.active = False
+
+
+    # CRIA UM NOVO METODO PARA USAR NO ARQUIVO QUERY_USER_PLAN
+    def get_active_plan(self) -> Plan | None:
+        for user_plan in self.user_plans:
+            if user_plan.active:
+                return user_plan.plan
+            return None

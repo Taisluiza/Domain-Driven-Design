@@ -41,3 +41,16 @@ Content-Type: application/json
 ### GET user plans (protected endpoint)
 GET {{baseUrl}}/subscriptions/user
 Authorization: Bearer {{token}}
+
+### Create a bank account (protected endpoint)
+POST {{baseUrl}}/movements/bank-accounts  
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "name": "Conta teste 2",
+  "bank_name": "Itau",
+  "account_number": "123456",
+  "account_type": "Corrente",
+  "initial_balance": 1000.0
+}

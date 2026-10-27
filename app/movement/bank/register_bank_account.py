@@ -34,7 +34,8 @@ async def register_bank_account(
     user_plan = query_user_plan.execute(email)
     if not user_plan:
         raise HTTPException(status_code=400, detail="User has no active plan")
-    bank_accounts = bank_account_repository.get_all_by_user(email)
+    bank_accounts = bank_account_repository.get_all_by_user(email) 
+    # REALIZA A VALIDAÇÃO PARA SABER SE USUARIO POSSUI UM PLANO, CONTAS USUARIO TEM E QUANTAS SÃO PERMITIDAS.
     if len(bank_accounts) >= user_plan.max_number_accounts:
         raise HTTPException(
             status_code=400,
