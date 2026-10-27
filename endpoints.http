@@ -8,7 +8,7 @@ Send Request
 POST {{baseUrl}}/users/register
 
 {
-    "name": "John Doe",
+    "name": "teste teste",
     "email": "teste@teste.com.br",
     "password": "super123456"
 }

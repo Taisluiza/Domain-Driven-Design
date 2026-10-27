@@ -1,4 +1,7 @@
 import logging
+import os
+
+from dotenv import load_dotenv
 from fastapi import FastAPI, Request
 from fastapi.responses import JSONResponse
 
@@ -6,9 +9,12 @@ from app.authentication.route import user_router
 from app.infra.database import init_database, create_tables
 from app.domain_exception import DomainException
 
+
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
+
+load_dotenv()
 init_database()
 create_tables()
 
