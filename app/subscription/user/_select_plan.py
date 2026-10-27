@@ -25,6 +25,7 @@ async def select_plan(
 ) -> None:
     user = user_repository.get_by_email(email)
     if not user:
+        # Ele busca os dados no usuario no modulo de auth
         user_auth = query_user_by_email.execute(email)
         user = User(name=user_auth.name, email=email)
 
