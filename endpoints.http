@@ -13,3 +13,10 @@ POST {{baseUrl}}/users/register
     "password": "super123456"
 }
 
+### User Token Creation Endpoint
+POST {{baseUrl}}/user/token
+Content-Type: application/x-www-form-urlencoded
+
+username=teste3@teste.com.br&passaword=super123456
+
+
